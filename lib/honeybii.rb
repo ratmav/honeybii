@@ -1,2 +1,2 @@
-require 'honeybii/ascii_image'
-require 'honeybii/shaded_ascii'
+require_relative 'honeybii/ascii_image'
+require_relative 'honeybii/shaded_ascii'

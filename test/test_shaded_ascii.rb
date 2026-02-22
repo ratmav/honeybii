@@ -1,6 +1,6 @@
 require_relative '_test_helper'
 
-class TestShadedAscii < MiniTest::Test
+class TestShadedAscii < Minitest::Test
   def setup
     @image = ShadedAscii.new('test/images/flower_bee.jpg')
   end

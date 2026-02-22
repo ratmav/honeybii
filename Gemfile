@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rmagick', '~> 2.13.2', require: 'RMagick'
-gem 'minitest-reporters', '1.0.2'
+gem 'rake'
+gem 'rmagick', '~> 6.0'
+gem 'minitest', '~> 5.0'
+gem 'minitest-reporters', '~> 1.7'

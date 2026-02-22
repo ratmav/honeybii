@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'optparse'
-require 'honeybii'
+require_relative '../lib/honeybii'
 
 options = {}
 option_parser = OptionParser.new do |opts|

@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 
-require 'honeybii'
+require_relative '../lib/honeybii'
 
 Minitest::Reporters.use!
