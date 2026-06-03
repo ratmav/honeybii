@@ -1,0 +1,15 @@
+# task plan. order = priority. nesting = structure.
+# task paths relative to tasks/. roadmap paths relative to roadmap/.
+
+phases:
+  - roadmap: roadmap/honiipy.md
+    tasks:
+      - scaffold-honiipy-cli.md
+      - ish-honiipy-wrapper.md
+      - port-ascii-core.md
+      - port-cli-options.md
+      - parity-verification.md
+      - license.md
+      - readme-and-banner.md
+      - rip-out-ruby.md
+      - rename-repo.md

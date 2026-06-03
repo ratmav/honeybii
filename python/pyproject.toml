@@ -1,0 +1,12 @@
+[tool.uv.workspace]
+members = ["honiipy"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.9",
+]
+
+[tool.pytest.ini_options]
+addopts = ["-q", "--tb=short", "-rf", "--no-header"]

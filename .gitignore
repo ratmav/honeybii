@@ -3,3 +3,13 @@
 tmp_scripts/
 
 *.gem
+
+# python
+.venv/
+__pycache__/
+*.pyc
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
