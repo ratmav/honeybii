@@ -4,8 +4,9 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
+      - ish-python.md
       - scaffold-honiipy-cli.md
-      - ish-honiipy-wrapper.md
+      - ish-honiipy.md
       - port-ascii-core.md
       - port-cli-options.md
       - parity-verification.md
