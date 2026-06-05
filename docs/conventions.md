@@ -24,8 +24,19 @@ python/                       uv workspace root
     tests/                    mirrors source
 ```
 
-ish, kanban, and the eventual `ish honiipy` wrapper live at the repo root and
-consume the package from the outside — build inside out.
+ish, kanban, and the ish wrappers live at the repo root and consume the package
+from the outside — build inside out.
+
+## ish wrappers
+
+two local ish packages drive the package from the repo root, split by concern
+(osai's consumer-vs-dev pattern, minus the `ish osai` umbrella — honeybii has
+one package):
+
+- `ish python <lint|fmt|fix|test|audit>` — dev verbs: ruff / pytest against
+  `python/honiipy`. backs the agent audit gate (`ish python audit`).
+- `ish honiipy [args]` — consumer pass-through: forwards to the honiipy typer
+  cli (`uv run honiipy`).
 
 ## reference repos
 
@@ -33,7 +44,9 @@ consume the package from the outside — build inside out.
 - `~/Source/sylvan` — uv package + conventions doc + argparse CLI.
 
 these are the template. follow them for packaging, cli, and test layout. cli
-framework (typer vs argparse) is decided in the port-cli task.
+framework: typer (osai), not argparse (sylvan) — osai's `BannerGroup` gives
+banner-on-help, its `CliRunner` tests are a ready template, and typer options
+make the later parity-flag validation (`-g 0-3`) trivial.
 
 ## size discipline (from laconic)
 
