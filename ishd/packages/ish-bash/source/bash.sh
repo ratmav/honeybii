@@ -24,6 +24,7 @@ _ish_bash_sources() {
   find \
     "${ISH_PROJECT_ROOT}/ishd/packages/ish-python/source" \
     "${ISH_PROJECT_ROOT}/ishd/packages/ish-bash/source" \
+    "${ISH_PROJECT_ROOT}/ishd/packages/ish-honiipy/source" \
     -name '*.sh' -print0
 }
 

@@ -1,6 +1,7 @@
 ish_packages_local=(
   ish-python
   ish-bash
+  ish-honiipy
 )
 
 ish_packages_remote=(
