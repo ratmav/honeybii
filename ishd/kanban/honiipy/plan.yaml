@@ -4,7 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - bats-harness.md
       - ish-honiipy.md
       - port-ascii-core.md
       - port-cli-options.md

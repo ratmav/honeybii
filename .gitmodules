@@ -1,0 +1,9 @@
+[submodule "ishd/packages/ish-bash/test/bats"]
+	path = ishd/packages/ish-bash/test/bats
+	url = https://github.com/bats-core/bats-core.git
+[submodule "ishd/packages/ish-bash/test/test_helper/bats-support"]
+	path = ishd/packages/ish-bash/test/test_helper/bats-support
+	url = https://github.com/bats-core/bats-support.git
+[submodule "ishd/packages/ish-bash/test/test_helper/bats-assert"]
+	path = ishd/packages/ish-bash/test/test_helper/bats-assert
+	url = https://github.com/bats-core/bats-assert.git

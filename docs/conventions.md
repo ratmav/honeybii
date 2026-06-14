@@ -29,12 +29,16 @@ from the outside — build inside out.
 
 ## ish wrappers
 
-two local ish packages drive the package from the repo root, split by concern
+three local ish packages drive the package from the repo root, split by concern
 (osai's consumer-vs-dev pattern, minus the `ish osai` umbrella — honeybii has
-one package):
+one python package):
 
-- `ish python <lint|fmt|fix|test|audit>` — dev verbs: ruff / pytest against
-  `python/honiipy`. backs the agent audit gate (`ish python audit`).
+- `ish python <lint|fmt|fix|test|audit>` — python dev verbs: ruff / pytest
+  against `python/honiipy`. backs the agent audit gate (`ish python audit`).
+- `ish bash <lint|fmt|fix|test|audit>` — bash dev verbs: shellcheck / shfmt /
+  bats against the ish wrapper sources. backs the user audit gate
+  (`ish bash audit`); bats vendored under `ishd/packages/ish-bash/test/` as
+  git submodules.
 - `ish honiipy [args]` — consumer pass-through: forwards to the honiipy typer
   cli (`uv run honiipy`).
 

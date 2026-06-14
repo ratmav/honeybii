@@ -1,5 +1,6 @@
 ish_packages_local=(
   ish-python
+  ish-bash
 )
 
 ish_packages_remote=(
@@ -8,6 +9,7 @@ ish_packages_remote=(
 
 ish_kanban_dev_path="${HOME}/Source/ish-kanban"
 ish_kanban_check_agent_audit="ish python audit"
+ish_kanban_check_user_audit="ish bash audit"
 
 ish_kanban_context_docs="docs/"
 ish_kanban_context_source="python/honiipy/source/honiipy/"

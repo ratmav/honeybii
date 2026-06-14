@@ -2,7 +2,7 @@
 
 feat. add the local ish package that passes the repo root straight through to
 the honiipy typer cli. consumer half of the former ish-honiipy-wrapper task —
-the dev verbs live under `ish python` (see ish-python).
+the dev verbs live under `ish python` / `ish bash` (see ish-python, ish-bash).
 
 ## precondition
 
@@ -21,12 +21,15 @@ for it to hit. hence this task sits after the scaffold.
 - `ishd/packages/ish-honiipy/source/honiipy.sh` — `ish_honiipy_route`: check uv;
   if `$1` is `help`, swap to `--help`; `cd python/honiipy && uv run honiipy
   "$@"`. pure pass-through, no sub-verbs.
-- `.ishrc` — add `ish-honiipy` to `ish_packages_local` (beside `ish-python`).
+- `.ishrc` — add `ish-honiipy` to `ish_packages_local` (beside `ish-python`, `ish-bash`).
 - `ishd/packages/ish-honiipy/.shellcheckrc` — `disable=SC1090,SC1091,SC2034`.
-- `ishd/packages/ish-honiipy/test/` — bats: `ish honiipy help` / no-args show the
-  typer help (cf. osai's `ish osai laconic` tests).
+- `ishd/packages/ish-bash/source/bash.sh` — add `ish-honiipy/source` to
+  `_ish_bash_sources` so the wrapper is linted/tested by `ish bash`.
+- `ishd/packages/ish-bash/test/integration/honiipy.bats` — bats: `ish honiipy
+  help` / no-args show the typer help (cf. osai's `ish osai laconic` tests);
+  centralized under the `ish bash` leg, no per-package test dir.
 
 ## deliverable
 
 `ish honiipy <image> [opts]` runs the cli; `ish honiipy help` shows its help.
-dev tooling stays under `ish python`.
+dev tooling stays under `ish python` / `ish bash`.
