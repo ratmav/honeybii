@@ -2,7 +2,10 @@
 name = "honiipy"
 version = "0.0.0"
 requires-python = ">=3.12"
-dependencies = ["pillow"]
+dependencies = ["pillow", "typer"]
+
+[project.scripts]
+honiipy = "honiipy.cli:main"
 
 [build-system]
 requires = ["hatchling"]

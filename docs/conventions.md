@@ -52,7 +52,9 @@ make the later parity-flag validation (`-g 0-3`) trivial.
 
 - files <= 100 lines.
 - functions <= 15 lines.
-- one `tests/test_X.py` per `source/honiipy/X.py`.
+- one `tests/test_X.py` per `source/honiipy/X.py`. `__init__.py` and
+  `_`-prefixed modules (e.g. `_banner.py`) are exempt, covered through
+  their consumer's test.
 
 ## lineage and license
 
