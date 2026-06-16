@@ -4,7 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - port-ascii-core.md
       - port-cli-options.md
       - parity-verification.md
       - license.md

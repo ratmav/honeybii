@@ -12,6 +12,7 @@ class BannerGroup(TyperGroup):
         typer.echo(ART)
         super().format_help(ctx, formatter)
 
+
 app = typer.Typer(
     cls=BannerGroup,
     name="honiipy",

@@ -9,7 +9,7 @@ document any intentional drift.
   `test/images/` (flower_bee, gradient, mona_lisa, starry_night, honeybees),
   across gradients and both styles.
 - where pillow vs rmagick differ unavoidably (quantization, resampling),
-  document the difference and the chosen behavior in `docs/conventions.md`.
+  document the difference and the chosen behavior in `docs/shading.md`.
 - add a regression test that pins honiipy's output for at least one image.
 
 ## note
