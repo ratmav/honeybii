@@ -50,7 +50,7 @@ one python package):
 these are the template. follow them for packaging, cli, and test layout. cli
 framework: typer (osai), not argparse (sylvan) — osai's `BannerGroup` gives
 banner-on-help, its `CliRunner` tests are a ready template, and typer options
-make the later parity-flag validation (`-g 0-3`) trivial.
+make the later parity-flag validation (`--gradient 0-3`) trivial.
 
 ## size discipline (from laconic)
 
