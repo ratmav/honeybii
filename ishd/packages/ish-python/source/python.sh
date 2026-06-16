@@ -13,9 +13,9 @@ ish_python_help() {
 usage: ish python <command>
 
 commands:
-  lint     ruff check on honiipy source
-  fmt      ruff format on honiipy source
-  fix      ruff check --fix on honiipy source
+  lint     ruff check + format --check on source and tests
+  fmt      ruff format on source and tests
+  fix      ruff check --fix on source and tests
   test     pytest on honiipy
   audit    lint + test
   help     show this help message
@@ -26,21 +26,22 @@ ish_python_lint() {
   ish_exists_executable --executable=uv \
     || ish_tui_message_error --message="python: uv required"
   cd "${_ish_python_root}" \
-    && uv run ruff check "${_ish_python_source}"
+    && uv run ruff check "${_ish_python_source}" "${_ish_python_tests}" \
+    && uv run ruff format --check "${_ish_python_source}" "${_ish_python_tests}"
 }
 
 ish_python_fmt() {
   ish_exists_executable --executable=uv \
     || ish_tui_message_error --message="python: uv required"
   cd "${_ish_python_root}" \
-    && uv run ruff format "${_ish_python_source}"
+    && uv run ruff format "${_ish_python_source}" "${_ish_python_tests}"
 }
 
 ish_python_fix() {
   ish_exists_executable --executable=uv \
     || ish_tui_message_error --message="python: uv required"
   cd "${_ish_python_root}" \
-    && uv run ruff check --fix "${_ish_python_source}"
+    && uv run ruff check --fix "${_ish_python_source}" "${_ish_python_tests}"
 }
 
 ish_python_test() {
