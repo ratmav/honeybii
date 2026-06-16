@@ -52,3 +52,5 @@ Read architecture docs from `ish_kanban_context_*` paths. Verify implementation 
 ## Step 7: Report
 
 Present findings one at a time, severity-ordered. Wait for the user to address each before continuing. If no findings, report clean.
+
+Once the review is clean (no remaining findings), tell the user to run `/ish-kanban-groom` next.

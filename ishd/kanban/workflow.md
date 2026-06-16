@@ -70,11 +70,11 @@ tasks must carry explicit, detailed instructions — enough for a future session
 
 ## planning
 
-when a task is too large to execute directly, break it into a directory with subtasks. planning mode produces kanban tasks, not code. the output of planning is a set of concrete, ordered tasks in the kanban — then execute them one at a time.
+when a task can't be executed in one pass — its approach is undecided, or the work is too large — break it into a directory with subtasks. planning mode produces kanban tasks, not code. the output of planning is a set of concrete, ordered tasks in the kanban — then execute them one at a time.
 
 ### decomposition
 
-**feat (top-level):** always a directory. decomposes into spike → docs → source/tests. every directory starts with a spike — the spike decides the approach, the remaining subtasks execute it. subtasks within don't further decompose.
+**feat (top-level):** a spike-led directory when the approach is undecided — when an open design question must be resolved before implementation. decomposes spike → docs → source/tests; the spike decides the approach, the remaining subtasks execute it. subtasks within don't further decompose. a feat whose approach is fully specified — behavior, exact changes, what-stays, and rationale all pinned, with no open question a spike would resolve — may be a standalone file. when in doubt, decompose: a needless spike costs one thin doc; a missing one costs rework.
 
 **fix and docs:** standalone tasks, no directory, no decomposition.
 
@@ -127,6 +127,8 @@ flowchart TD
 tracking: the `audit` git tag marks the last audit commit. onboard counts commits since the tag and recommends audit when count >= 5. `/ish-kanban-commit` moves the tag after an `audit` type commit.
 
 audits run on main. no task branch — audit changes (kanban updates, doc fixes, workflow corrections) are committed directly to main.
+
+findings: audit findings slot at the top of `plan.yaml`, ahead of existing work. unresolved findings are debt — they go first.
 
 ## commit messages
 

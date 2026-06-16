@@ -17,9 +17,7 @@ Run `git branch --show-current`. If on `main`, refuse — nothing to merge.
 
 ## Step 2: Determine merge target
 
-Parse the branch name (`{name}/{board}/{type}/{path}`):
-- If `subtask1` type → merge to parent branch (`{name}/{board}/task/{parent}`)
-- If `task` type → merge to `main`
+Run `ish kanban merge` to get the merge target for the current branch. It computes the target with the same branch-base logic the rest of the system uses (`subtask1` → parent task branch, `task` → `main`). Use its output as `<target>` for the remaining steps. Do not re-derive the target by hand.
 
 ## Step 3: Check for remaining subtasks
 

@@ -11,6 +11,8 @@ allowed-tools: Read, Glob, Grep
 
 Follow these steps exactly, in order.
 
+> **Do not invoke during an audit.** Audits run on `main` with no task branch and commit directly to `main`. Onboard and next-task already skip branch creation when `ish kanban audit cadence` recommends an audit; if you reach this skill directly mid-audit, stop and stay on `main`.
+
 ## Step 1: Identify next task
 
 Run `ish kanban boards list` to list available boards. If there is one board, use it. If multiple, ask the user which board to work on.
