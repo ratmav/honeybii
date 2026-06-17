@@ -5,7 +5,7 @@ phases:
   - roadmap: roadmap/honiipy.md
     tasks:
       - adopt-laconic/:
-          - spike.md
+          - wire.md
       - parity-verification.md
       - license.md
       - readme-and-banner.md
