@@ -33,10 +33,11 @@ three local ish packages drive the package from the repo root, split by concern
 (osai's consumer-vs-dev pattern, minus the `ish osai` umbrella — honeybii has
 one python package):
 
-- `ish python <lint|fmt|fix|test|audit>` — python dev verbs: ruff / pytest
-  against `python/honiipy`. backs the agent audit gate (`ish python audit`).
+- `ish python <lint|fmt|fix|test|laconic|audit>` — python dev verbs: ruff /
+  pytest / laconic against `python/honiipy`. backs the agent audit gate
+  (`ish python audit`).
 - `ish bash <lint|fmt|fix|test|audit>` — bash dev verbs: shellcheck / shfmt /
-  bats against the ish wrapper sources. backs the user audit gate
+  bats against the ish wrapper sources. backs the agent audit gate
   (`ish bash audit`); bats vendored under `ishd/packages/ish-bash/test/` as
   git submodules.
 - `ish honiipy [args]` — consumer pass-through: forwards to the honiipy typer
@@ -59,6 +60,10 @@ make the later parity-flag validation (`--gradient 0-3`) trivial.
 - one `tests/test_X.py` per `source/honiipy/X.py`. `__init__.py` and
   `_`-prefixed modules (e.g. `_banner.py`) are exempt, covered through
   their consumer's test.
+
+`ish python laconic` enforces these against `source/honiipy` (size +
+structure), and `ish python audit` runs it alongside ruff and pytest — so the
+rules above are gated, not just guidance.
 
 ## lineage and license
 

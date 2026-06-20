@@ -12,6 +12,7 @@ setup() {
   assert_output --partial "fmt"
   assert_output --partial "fix"
   assert_output --partial "test"
+  assert_output --partial "laconic"
   assert_output --partial "audit"
 }
 

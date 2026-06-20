@@ -17,7 +17,8 @@ commands:
   fmt      ruff format on source and tests
   fix      ruff check --fix on source and tests
   test     pytest on honiipy
-  audit    lint + test
+  laconic  laconic size + structure checks on source
+  audit    lint + test + laconic
   help     show this help message
 EOF
 }
@@ -52,10 +53,18 @@ ish_python_test() {
        -q --tb=short -rf --no-header "${_ish_python_tests}" "$@"
 }
 
+ish_python_laconic() {
+  ish_exists_executable --executable=uv \
+    || ish_tui_message_error --message="python: uv required"
+  cd "${_ish_python_root}" \
+    && uv run laconic check --source="${_ish_python_source}" "$@"
+}
+
 ish_python_audit() {
   local failed=0
   ish_python_lint || failed=1
   ish_python_test || failed=1
+  ish_python_laconic || failed=1
   return "${failed}"
 }
 
@@ -65,6 +74,7 @@ ish_python_route() {
     fmt)     shift; ish_python_fmt "$@" ;;
     fix)     shift; ish_python_fix "$@" ;;
     test)    shift; ish_python_test "$@" ;;
+    laconic) shift; ish_python_laconic "$@" ;;
     audit)   shift; ish_python_audit "$@" ;;
     help|"") ish_python_help ;;
     *)
