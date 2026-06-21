@@ -4,7 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - license.md
       - readme-and-banner.md
       - rip-out-ruby.md
       - rename-repo.md

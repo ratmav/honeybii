@@ -95,5 +95,6 @@ honeybii; regenerate the fixtures when a pipeline change is intentional.
 
 ## lineage and license
 
-honiipy carries honeybii's mit license forward and credits jamey deorio in the
-readme. the name is a homage: honeybii -> honiipy (bee -> python).
+honiipy carries honeybii's mit license forward in `LICENSE` (crediting jamey
+deorio and the honiipy maintainer) and credits jamey deorio in the readme. the
+name is a homage: honeybii -> honiipy (bee -> python).
