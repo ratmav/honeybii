@@ -4,7 +4,9 @@ feat. honiipy stands alone; remove the ruby implementation.
 
 ## precondition
 
-parity verified (see parity-verification). do not start until honiipy matches.
+parity verified: honiipy matches honeybii algorithmically — see the parity
+section in `docs/conventions.md`. exact byte parity is impossible across imaging
+libraries; the deviations are documented and accepted.
 
 ## what changes
 

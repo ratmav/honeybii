@@ -4,7 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - parity-verification.md
       - license.md
       - readme-and-banner.md
       - rip-out-ruby.md

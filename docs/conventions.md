@@ -65,6 +65,34 @@ make the later parity-flag validation (`--gradient 0-3`) trivial.
 structure), and `ish python audit` runs it alongside ruff and pytest — so the
 rules above are gated, not just guidance.
 
+## parity
+
+honiipy targets algorithmic parity with honeybii, not byte-identical output:
+pillow and rmagick are different imaging libraries. for every bundled test
+image, gradient (0–3), and style, both render the same character grid (identical
+rows × columns) and share the relative min/max stretch and half-away-from-zero
+rounding.
+
+output differs only in which glyph a cell gets, where two unavoidable library
+differences nudge a pixel's intensity across a gradient boundary:
+
+- grayscale — pillow's `L` mode uses Rec. 601 luma weights; rmagick reduces via
+  `GRAYColorspace` + `pixel.intensity`, a different luminance.
+- resampling — honiipy downsamples with Lanczos; honeybii uses ImageMagick's
+  default resize filter.
+
+character agreement (12px point size) averages ~92%: coarse gradients and smooth
+images often match exactly, while the finest 17-step gradient on photographs
+falls as low as ~46%, where a one-bucket shift is most likely. on the
+photographs, `one_to_one` generally tracks honeybii more closely than
+`relative`, since `relative` also stretches across a min/max the two grayscale
+paths compute slightly differently.
+
+these residuals are properties of the imaging library, not defects, so honiipy
+keeps pillow-native grayscale and Lanczos resampling and pins its own output in
+the regression fixtures (`tests/fixtures/`) rather than asserting equality with
+honeybii; regenerate the fixtures when a pipeline change is intentional.
+
 ## lineage and license
 
 honiipy carries honeybii's mit license forward and credits jamey deorio in the

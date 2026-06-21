@@ -1,0 +1,2 @@
+# golden ascii snapshots: exact bytes — pin LF, no whitespace normalization.
+*.txt text eol=lf -whitespace

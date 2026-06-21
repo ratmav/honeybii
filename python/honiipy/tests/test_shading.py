@@ -1,3 +1,4 @@
+from pathlib import Path
 import pytest
 from PIL import Image
 
@@ -86,3 +87,13 @@ def test_shade_flat_image(tmp_path):
         shading.shade(path, point_size=4, style="relative")  # no relative range
     art = shading.shade(path, point_size=4, style="one_to_one")
     assert len(set(art.replace("\n", ""))) == 1  # uniform solid block
+
+
+_IMAGES = Path(__file__).parents[3] / "test" / "images"
+_FIXTURES = Path(__file__).parent / "fixtures"
+
+
+@pytest.mark.parametrize("name", sorted(p.stem for p in _FIXTURES.glob("*.txt")))
+def test_shade_matches_fixture(name):
+    expected = (_FIXTURES / f"{name}.txt").read_text()
+    assert shading.shade(_IMAGES / f"{name}.jpg") == expected
