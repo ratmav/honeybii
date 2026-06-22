@@ -16,3 +16,15 @@ setup() {
   assert_success
   assert_output --partial "Usage:"
 }
+
+@test "ish honiipy convert resolves a relative path from the caller's cwd" {
+  local img="test/images/snake.jpg"
+  cd "${ISH_PROJECT_ROOT}"
+  run "${ISH_BIN}" honiipy convert "${img}"
+  assert_success
+  [ -n "${output}" ]
+  local from_relative="${output}"
+  run "${ISH_BIN}" honiipy convert "${ISH_PROJECT_ROOT}/${img}"
+  assert_success
+  assert_equal "${from_relative}" "${output}"
+}

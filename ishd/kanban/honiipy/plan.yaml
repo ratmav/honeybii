@@ -4,6 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - cli-relative-paths.md
       - rip-out-ruby.md
       - rename-repo.md
+      - python-wrapper-relative-paths.md
