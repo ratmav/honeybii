@@ -1,9 +1,43 @@
-"""honiipy CLI banner — printed above the --help / no-args help output."""
+"""honiipy CLI banner — the ascii python shown above the help output.
 
-# placeholder wordmark; the real banner is a python snake honiipy renders
-# from an image once the converter lands.
-ART = r"""
-honiipy
-~~~~~~~
-image-to-ascii converter
+dogfooded from test/images/snake.jpg (gradient 0); the test suite pins
+ART to the live conversion, so regenerate when shade() changes.
 """
+
+ART = """                   +x+~.                              
+                   $@@@%V~                            
+                    8@@@@@:                           
+                    .*#@@@%-                          
+                       .+%@%-                         
+                         =@@$                         
+       -:=**=+:~-       ~$@@V                         
+     =#%@@@@@@@@@@%8###%@@@$.         .+x$#88#V*-     
+   .$@@@@#VxxYV$8%%@@@%8$*~         +$@@@@%%%%@@@$:   
+   8@@@%:          ...            :#@@%$V$YVY$V$%@@x  
+  =@@@@+                         Y@@@$VVx:- .:VVY%@@* 
+  *@@@@=                       :8@@@VVx-      .$x8@@8 
+  .%@@@@=                    -Y@@@@VV+        -x#@@@8 
+   ~8@@@@8Y+~.            .:V%@@@%Y=.      .~*$%@@@@= 
+     x%@@@@@@%8##$$$$$$$$8%@@@@%$*Y$V$$$#8%%@@@@@@%+  
+       +V8@@@@@@@@@@@@@@@@@@%#YxY8@@@@@@@@@@@@@@8*.   
+          .~*$#888888888%%8#$$8@@@@@@@@@@%%8$Y=~      
+          .*#%%88%%%%8#$Yx*===+:~~~~~~---.            
+        .Y@@@@@@@%V*:-.                               
+       ~8@@@@@8x~                                     
+      -%@@@@%=                                        
+      =@@@@%-                   :x$#8#$x:             
+      x@@@@*        ~=*x*+~  .*8@@@@@@@@@8+           
+      *%@@@=     .Y@@8$#8@@$x8@@@@8Y++x%@@@*          
+      =$@@@#     #@Y.    .Y8@@%#x~     -8@@%          
+      -Y$@@@V.   %@     :$@@8#Yx=      -8@@#          
+       ~Y$8@@%x~ :8#~-x8@@#$Y+*@@%V**Y#@@@#-          
+        .*Y$#%@@%8##8#8#$VY+.  :V%@@@@@8V+            
+          -=xYV$#88$VV#$$:        -~~~.               
+             .~:+====:.~$x                            
+                         Vx                           
+                          $.                          
+                          ++                          
+                          ~+                          
+                          ~.                          
+                          .                           
+                                                      """

@@ -11,7 +11,8 @@ libraries; the deviations are documented and accepted.
 ## what changes
 
 - remove `lib/`, `bin/honeybii`, `Gemfile`, `honeybii.gemspec`, `Rakefile`,
-  `test/` (ruby), `.ruby-version`.
+  `test/` (ruby), `.ruby-version`, `README.markdown` (ruby readme, superseded
+  by `README.md`).
 - the ruby `Dockerfile` / `Makefile` — repurpose for python or remove.
 - `.gitignore` — drop ruby entries (`.bundle/`, `*.gem`).
 
