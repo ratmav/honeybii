@@ -3,7 +3,6 @@
 from pathlib import Path
 
 import typer
-from PIL import UnidentifiedImageError
 from typer.core import TyperGroup
 
 from honiipy import __version__, shade
@@ -34,7 +33,7 @@ def _render(image: Path, pixel_size: int, gradient: int, one_to_one: bool) -> No
     style = "one_to_one" if one_to_one else "relative"
     try:
         art = shade(image, point_size=pixel_size, gradient=gradient, style=style)
-    except (FileNotFoundError, UnidentifiedImageError):
+    except OSError:  # missing, corrupt, truncated, permission, directory, ...
         typer.echo(f"error: cannot read image: {image}", err=True)
         raise typer.Exit(1)
     except ValueError as exc:

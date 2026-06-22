@@ -82,6 +82,7 @@ def test_convert_rejects_out_of_range_gradient(tmp_path) -> None:
 def test_convert_missing_image(tmp_path) -> None:
     result = runner.invoke(app, ["convert", str(tmp_path / "nope.png")])
     assert result.exit_code == 1
+    assert "error: cannot read image" in result.stderr
 
 
 def test_convert_not_an_image(tmp_path) -> None:
@@ -89,6 +90,14 @@ def test_convert_not_an_image(tmp_path) -> None:
     path.write_text("not an image")
     result = runner.invoke(app, ["convert", str(path)])
     assert result.exit_code == 1
+    assert "error: cannot read image" in result.stderr
+
+
+def test_convert_directory_errors(tmp_path) -> None:
+    # a directory raises IsADirectoryError (an OSError): clean error, not a traceback
+    result = runner.invoke(app, ["convert", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "error: cannot read image" in result.stderr
 
 
 def test_convert_flat_relative_errors(tmp_path) -> None:

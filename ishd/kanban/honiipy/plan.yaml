@@ -4,7 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - handle-unreadable-image.md
       - cli-relative-paths.md
       - rip-out-ruby.md
       - rename-repo.md
