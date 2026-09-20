@@ -4,6 +4,9 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - rip-out-ruby.md
+      - rip-out-ruby/copy-test-images.md
+      - rip-out-ruby/delete-ruby.md
+      - rip-out-ruby/hoist-to-root.md
       - rename-repo.md
+      - adopt-poe-tasks.md
       - python-wrapper-relative-paths.md
