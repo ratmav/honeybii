@@ -65,9 +65,10 @@ path references, all of which currently name `python/honiipy` or
   `source/honiipy` references under `size discipline`.
 - `ishd/kanban/honiipy/roadmap/honiipy.md` — describes building "under
   `python/honiipy/`" with a `source/honiipy` layout.
-- `ishd/kanban/honiipy/tasks/python-wrapper-relative-paths.md` — names
-  `${_ish_python_root}/source/honiipy` in its `what changes`. the bug it
-  describes survives the hoist; only the paths in it change.
+the three bash edits above are known-temporary. `adopt-poe-tasks` deletes
+`ish-python`, `ish-bash`, and `ish-honiipy` outright once the gates move to
+poe. repoint them so the repo stays working through the hoist; do not invest
+in them beyond that.
 
 laconic gate:
 
@@ -94,7 +95,9 @@ laconic gate:
 
 ## test
 
-- `ish python audit` and `ish bash audit` pass from the repo root.
+- `ish python audit` passes from the repo root. there is no bash gate —
+  shellcheck is not installed and `ish bash audit` retires with the wrappers,
+  so the `ish honiipy convert` check below is what exercises the bash edits.
 - `ish honiipy convert <some image>` renders, with a relative path resolving
   from the caller's cwd.
 - `uv run laconic check --source=src/honiipy --size` passes; without `--size`

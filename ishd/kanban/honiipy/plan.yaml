@@ -9,4 +9,3 @@ phases:
       - rip-out-ruby/hoist-to-root.md
       - rename-repo.md
       - adopt-poe-tasks.md
-      - python-wrapper-relative-paths.md

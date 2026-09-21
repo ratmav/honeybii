@@ -62,7 +62,8 @@ then:
 
 ## test
 
-- `ish python audit` and `ish bash audit` pass.
+- `ish python test` passes. the full `ish python audit` stays red on laconic's
+  `source/` vs `src/` error until `hoist-to-root`, so it is not the gate here.
 - `grep -rni "rmagick\|bundle\|gemspec\|rake" . --exclude-dir=.git` returns
   nothing outside `LICENSE`, the kanban, and docs prose.
 
