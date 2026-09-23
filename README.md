@@ -1,8 +1,44 @@
 # honiipy
 
-an image-to-ascii converter — turn an image into shaded ascii text, right in
-your terminal. honiipy even renders its own help banner: an ascii python,
-dogfooded from `test/images/snake.jpg`.
+an image-to-ascii converter.
+
+```shell
+                   $@@@%V~
+                    8@@@@@:
+                    .*#@@@%-
+                       .+%@%-
+                         =@@$
+       -:=**=+:~-       ~$@@V
+     =#%@@@@@@@@@@%8###%@@@$.         .+x$#88#V*-
+   .$@@@@#VxxYV$8%%@@@%8$*~         +$@@@@%%%%@@@$:
+   8@@@%:          ...            :#@@%$V$YVY$V$%@@x
+  =@@@@+                         Y@@@$VVx:- .:VVY%@@*
+  *@@@@=                       :8@@@VVx-      .$x8@@8
+  .%@@@@=                    -Y@@@@VV+        -x#@@@8
+   ~8@@@@8Y+~.            .:V%@@@%Y=.      .~*$%@@@@=
+     x%@@@@@@%8##$$$$$$$$8%@@@@%$*Y$V$$$#8%%@@@@@@%+
+       +V8@@@@@@@@@@@@@@@@@@%#YxY8@@@@@@@@@@@@@@8*.
+          .~*$#888888888%%8#$$8@@@@@@@@@@%%8$Y=~
+          .*#%%88%%%%8#$Yx*===+:~~~~~~---.
+        .Y@@@@@@@%V*:-.
+       ~8@@@@@8x~
+      -%@@@@%=
+      =@@@@%-                   :x$#8#$x:
+      x@@@@*        ~=*x*+~  .*8@@@@@@@@@8+
+      *%@@@=     .Y@@8$#8@@$x8@@@@8Y++x%@@@*
+      =$@@@#     #@Y.    .Y8@@%#x~     -8@@%
+      -Y$@@@V.   %@     :$@@8#Yx=      -8@@#
+       ~Y$8@@%x~ :8#~-x8@@#$Y+*@@%V**Y#@@@#-
+        .*Y$#%@@%8##8#8#$VY+.  :V%@@@@@8V+
+          -=xYV$#88$VV#$$:        -~~~.
+             .~:+====:.~$x
+                         Vx
+                          $.
+                          ++
+                          ~+
+                          ~.
+                          .
+```
 
 ## install
 
@@ -27,15 +63,10 @@ full reference: [docs/cli.md](docs/cli.md), [docs/shading.md](docs/shading.md).
 
 ## lineage
 
-honiipy is a python port of [honeybii](http://honeybii.com) by jamey deorio —
-the original ruby image-to-ascii gem
-([rubygems](https://rubygems.org/gems/honeybii),
-[source](https://github.com/jameydeorio/honeybii)). it carries honeybii's mit
-license forward and credits jamey as the original author.
-
-the name is a homage: honeybii -> honiipy (bee -> python).
+honiipy is a python port of honeybii by jamey deorio — the original ruby
+image-to-ascii gem ([rubygems](https://rubygems.org/gems/honeybii),
+[source](https://github.com/jameydeorio/honeybii)).
 
 ## license
 
-mit — see [LICENSE](LICENSE), crediting jamey deorio (the original honeybii
-author) and the honiipy maintainer.
+mit — see [LICENSE](LICENSE).

@@ -1,10 +1,6 @@
 .DS_Store
-.bundle/
 tmp_scripts/
 
-*.gem
-
-# python
 .venv/
 __pycache__/
 *.pyc
