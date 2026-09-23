@@ -1,6 +1,6 @@
 """honiipy CLI banner — the ascii python shown above the help output.
 
-dogfooded from test/images/snake.jpg (gradient 0); the test suite pins
+dogfooded from tests/images/snake.jpg (gradient 0); the test suite pins
 ART to the live conversion, so regenerate when shade() changes.
 """
 

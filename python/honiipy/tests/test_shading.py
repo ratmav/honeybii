@@ -90,7 +90,7 @@ def test_shade_flat_image(tmp_path):
     assert len(set(art.replace("\n", ""))) == 1  # uniform solid block
 
 
-_IMAGES = Path(__file__).parents[3] / "test" / "images"
+_IMAGES = Path(__file__).parent / "images"
 _FIXTURES = Path(__file__).parent / "fixtures"
 
 

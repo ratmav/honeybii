@@ -18,7 +18,7 @@ setup() {
 }
 
 @test "ish honiipy convert resolves a relative path from the caller's cwd" {
-  local img="test/images/snake.jpg"
+  local img="python/honiipy/tests/images/snake.jpg"
   cd "${ISH_PROJECT_ROOT}"
   run "${ISH_BIN}" honiipy convert "${img}"
   assert_success
