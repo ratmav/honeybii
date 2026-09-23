@@ -15,3 +15,13 @@ ish_kanban_check_agent_bash="ish bash audit"
 ish_kanban_context_docs="docs/"
 ish_kanban_context_source="python/honiipy/source/honiipy/"
 ish_kanban_context_tests="python/honiipy/tests/"
+
+# ish sources this file on every invocation, so it is the one place that runs
+# before any verb. non-interactive shells (agents, hooks, ci) do not always get
+# the profile's path, which makes nix-installed tools look uninstalled: uv and
+# shellcheck are there, the verb just cannot see them. prepend the nix profile
+# when it exists and is not already present.
+if [[ -d "${HOME}/.nix-profile/bin" \
+  && ":${PATH}:" != *":${HOME}/.nix-profile/bin:"* ]]; then
+  export PATH="${HOME}/.nix-profile/bin:${PATH}"
+fi
