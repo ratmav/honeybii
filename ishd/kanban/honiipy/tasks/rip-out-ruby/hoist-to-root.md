@@ -47,8 +47,10 @@ root `pyproject.toml` — merge the two manifests:
   workspace root.
 - drop `[tool.uv.workspace]` entirely.
 - `[tool.uv.sources]` — the laconic path loses one level:
-  `{ path = "../laconic/laconic", editable = true }`. it is
-  `../../laconic/laconic` today only because the manifest sits under `python/`.
+  `{ path = "../laconic", editable = true }`. it is `../../laconic` today only
+  because the manifest sits under `python/`. verify the depth against
+  `~/Source/laconic` rather than trusting this line — laconic is developed
+  alongside honiipy and has already moved its package root once.
 
 path references, all of which currently name `python/honiipy` or
 `source/honiipy`:
@@ -61,10 +63,13 @@ path references, all of which currently name `python/honiipy` or
 - `.ishrc` — `ish_kanban_context_source="src/honiipy/"` and
   `ish_kanban_context_tests="tests/"`. these are what `/ish-kanban-onboard`
   reads to study the project, so a stale value misdirects every later session.
-- `docs/conventions.md` — the layout tree in the `layout` section, and the two
-  `source/honiipy` references under `size discipline`.
+- `docs/conventions.md` — the two `source/honiipy` references under `size
+  discipline`. the `layout` section names no paths by design; leave it alone.
 - `ishd/kanban/honiipy/roadmap/honiipy.md` — describes building "under
   `python/honiipy/`" with a `source/honiipy` layout.
+- `ishd/packages/ish-bash/test/integration/honiipy.bats` — the relative-path
+  test names `python/honiipy/tests/images/snake.jpg`, which becomes
+  `tests/images/snake.jpg`.
 the three bash edits above are known-temporary. `adopt-poe-tasks` deletes
 `ish-python`, `ish-bash`, and `ish-honiipy` outright once the gates move to
 poe. repoint them so the repo stays working through the hoist; do not invest
@@ -72,18 +77,19 @@ in them beyond that.
 
 laconic gate:
 
-- `ish_python_laconic` runs `laconic check --source=... --size` for now.
-  laconic's structure pass is all-or-nothing: `_run_structure` runs the test
-  mirror check *and* `check_init_empty`, which fails on any non-empty
-  `__init__.py`. honiipy is a library with a cli over the top, and
-  `src/honiipy/__init__.py` is its public surface — it re-exports `shade` and
-  defines `__version__`, consumed by `cli.py`, the tests, and the first code
-  block in `docs/shading.md`. satisfying that check means deleting shipped api,
-  so the size rules stay gated and the mirror rule reverts to convention until
-  laconic offers an escape.
-- `docs/conventions.md` `size discipline` — say plainly that the mirror rule is
-  convention, not gated, and why. an ungated rule documented as gated is worse
-  than an ungated rule.
+- `ish_python_laconic` keeps running laconic unmodified with every check
+  enabled — no `--size`, no flags narrowing what it inspects. `src/honiipy`
+  satisfies `mirror_dir`, so the structure pass finally runs here.
+- the mirror check exempts only `__init__.py`; `_`-prefixed modules are
+  mirrored like anything else. add `tests/test__banner.py` and
+  `tests/test__gradients.py`. both modules are already exercised —
+  `test_banner_matches_snake_conversion` pins `ART`, and the gradients are
+  covered through `test_shading.py` — so these are thin mirrors asserting the
+  modules' own surface, not new test design.
+- laconic is developed alongside honiipy and its rules move. if the gate fails
+  on a rule not described here, laconic changed: adapt honiipy to it. do not
+  pin a version, pass a narrowing flag, or fork the checker. see the laconic
+  paragraph under `size discipline` in `docs/conventions.md`.
 
 ## what stays
 
@@ -95,17 +101,19 @@ laconic gate:
 
 ## test
 
-- `ish python audit` passes from the repo root. there is no bash gate —
-  shellcheck is not installed and `ish bash audit` retires with the wrappers,
-  so the `ish honiipy convert` check below is what exercises the bash edits.
+- `ish python audit` passes from the repo root. the bash edits are deliberately
+  not gated on `ish bash audit`: the wrappers retire wholesale in
+  `adopt-poe-tasks` and get no further investment. the `ish honiipy convert`
+  check below is what exercises them.
 - `ish honiipy convert <some image>` renders, with a relative path resolving
   from the caller's cwd.
-- `uv run laconic check --source=src/honiipy --size` passes; without `--size`
-  it reports the `__init__.py` violation, as expected.
+- `uv run laconic check --source=src/honiipy` passes with no flags at all —
+  size rules and test mirror both.
 - `grep -rn "python/honiipy\|source/honiipy" . --exclude-dir=.git
-  --exclude-dir=.venv` returns nothing.
+  --exclude-dir=.venv --exclude-dir=kanban` returns nothing. the kanban is
+  excluded because task prose quotes the old paths to describe the move.
 
 ## deliverable
 
 honiipy is the repo root: `src/honiipy/`, `tests/`, one `pyproject.toml`, no
-workspace, no `python/`. laconic's size gate runs against `src/honiipy`.
+workspace, no `python/`. laconic's full gate runs against `src/honiipy`.

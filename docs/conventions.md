@@ -15,17 +15,12 @@ replace the ruby gem once it reaches parity. the ruby source under
 
 ## layout
 
-```
-python/                       uv workspace root
-  pyproject.toml              workspace + shared dev deps
-  honiipy/
-    pyproject.toml            package manifest
-    source/honiipy/           package code
-    tests/                    mirrors source
-```
+build inside out: honiipy is a self-contained python package, and ish, kanban,
+and the wrappers sit outside it and consume it like any other caller.
 
-ish, kanban, and the ish wrappers live at the repo root and consume the package
-from the outside — build inside out.
+docs do not restate directory trees, file listings, or code. the repo already
+says that, and a second copy only drifts out of sync. document intent and the
+reasoning behind it; let the source answer the rest.
 
 ## ish wrappers
 
@@ -57,13 +52,19 @@ make the later parity-flag validation (`--gradient 0-3`) trivial.
 
 - files <= 100 lines.
 - functions <= 15 lines.
-- one `tests/test_X.py` per `source/honiipy/X.py`. `__init__.py` and
-  `_`-prefixed modules (e.g. `_banner.py`) are exempt, covered through
-  their consumer's test.
+- one `tests/test_X.py` per `source/honiipy/X.py`. only `__init__.py` is
+  exempt; `_`-prefixed modules are mirrored like anything else, so marking a
+  module internal cannot quietly drop its test requirement.
 
 `ish python laconic` enforces these against `source/honiipy` (size +
 structure), and `ish python audit` runs it alongside ruff and pytest — so the
 rules above are gated, not just guidance.
+
+laconic runs unmodified, with every check it offers enabled: no flags narrowing
+what it inspects, no pinned version, no local fork. it is developed alongside
+honiipy, so its rules move. when they do, the gate fails here and honiipy
+adapts — the rules above describe laconic's current behavior, not a contract
+with it.
 
 ## parity
 
