@@ -10,7 +10,7 @@ dev = [
 ]
 
 [tool.uv.sources]
-laconic = { path = "../../laconic/laconic", editable = true }
+laconic = { path = "../../laconic", editable = true }
 
 [tool.pytest.ini_options]
 addopts = ["-q", "--tb=short", "-rf", "--no-header"]
