@@ -4,6 +4,6 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - rip-out-ruby/hoist-to-root.md
+      - laconic-conformance.md
       - rename-repo.md
       - adopt-poe-tasks.md

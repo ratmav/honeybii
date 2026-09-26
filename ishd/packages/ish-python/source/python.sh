@@ -2,10 +2,10 @@
 
 # ish-python: local package for honiipy's python dev verbs. the dev half of the
 # project tooling; the cli pass-through is ish-honiipy. each verb cds the package
-# and calls uv run (uv auto-syncs the workspace, enforcing venv discipline).
+# and calls uv run (uv auto-syncs, enforcing venv discipline).
 
-_ish_python_root="${ISH_PROJECT_ROOT}/python/honiipy"
-_ish_python_source="source/honiipy"
+_ish_python_root="${ISH_PROJECT_ROOT}"
+_ish_python_source="src/honiipy"
 _ish_python_tests="tests"
 
 ish_python_help() {

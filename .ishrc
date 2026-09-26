@@ -13,8 +13,8 @@ ish_kanban_check_agent_python="ish python audit"
 ish_kanban_check_agent_bash="ish bash audit"
 
 ish_kanban_context_docs="docs/"
-ish_kanban_context_source="python/honiipy/source/honiipy/"
-ish_kanban_context_tests="python/honiipy/tests/"
+ish_kanban_context_source="src/honiipy/"
+ish_kanban_context_tests="tests/"
 
 # ish sources this file on every invocation, so it is the one place that runs
 # before any verb. non-interactive shells (agents, hooks, ci) do not always get

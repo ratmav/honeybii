@@ -2,19 +2,6 @@ version = 1
 revision = 3
 requires-python = ">=3.12"
 
-[manifest]
-members = [
-    "honiipy",
-]
-
-[manifest.dependency-groups]
-dev = [
-    { name = "laconic", editable = "../../laconic" },
-    { name = "pytest", specifier = ">=8.0" },
-    { name = "pytest-cov", specifier = ">=7.1.0" },
-    { name = "ruff", specifier = ">=0.15.9" },
-]
-
 [[package]]
 name = "annotated-doc"
 version = "0.0.4"
@@ -120,16 +107,32 @@ wheels = [
 [[package]]
 name = "honiipy"
 version = "0.0.0"
-source = { editable = "honiipy" }
+source = { editable = "." }
 dependencies = [
     { name = "pillow" },
     { name = "typer" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "laconic" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "pillow" },
     { name = "typer" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "laconic", editable = "../laconic" },
+    { name = "pytest", specifier = ">=8.0" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
+    { name = "ruff", specifier = ">=0.15.9" },
 ]
 
 [[package]]
@@ -144,7 +147,7 @@ wheels = [
 [[package]]
 name = "laconic"
 version = "0.0.0"
-source = { editable = "../../laconic" }
+source = { editable = "../laconic" }
 dependencies = [
     { name = "typer" },
 ]

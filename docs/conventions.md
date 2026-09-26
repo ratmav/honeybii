@@ -22,7 +22,7 @@ reasoning behind it; let the source answer the rest.
 three local ish packages drive the package from the repo root, split by concern:
 
 - `ish python <lint|fmt|fix|test|laconic|audit>` — python dev verbs: ruff /
-  pytest / laconic against `python/honiipy`. backs the agent audit gate
+  pytest / laconic against `src/honiipy`. backs the agent audit gate
   (`ish python audit`).
 - `ish bash <lint|fmt|fix|test|audit>` — bash dev verbs: shellcheck / shfmt /
   bats against the ish wrapper sources. backs the agent audit gate
@@ -35,11 +35,11 @@ three local ish packages drive the package from the repo root, split by concern:
 
 - files <= 100 lines.
 - functions <= 15 lines.
-- one `tests/test_X.py` per `source/honiipy/X.py`. only `__init__.py` is
+- one `tests/test_X.py` per `src/honiipy/X.py`. only `__init__.py` is
   exempt; `_`-prefixed modules are mirrored like anything else, so marking a
   module internal cannot quietly drop its test requirement.
 
-`ish python laconic` enforces these against `source/honiipy` (size +
+`ish python laconic` enforces these against `src/honiipy` (size +
 structure), and `ish python audit` runs it alongside ruff and pytest — so the
 rules above are gated, not just guidance.
 
