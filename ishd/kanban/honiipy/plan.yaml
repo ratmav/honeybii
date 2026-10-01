@@ -4,6 +4,5 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - laconic-conformance.md
       - rename-repo.md
       - adopt-poe-tasks.md

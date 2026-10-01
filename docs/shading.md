@@ -5,9 +5,9 @@ turn an image into shaded ascii text.
 ## api
 
 ```python
-from honiipy import shade
+from honiipy import shading
 
-art = shade("photo.png", point_size=12, gradient=0, style="relative")
+art = shading.shade("photo.png", point_size=12, gradient=0, style="relative")
 print(art)
 ```
 

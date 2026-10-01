@@ -30,21 +30,3 @@ three local ish packages drive the package from the repo root, split by concern:
   git submodules.
 - `ish honiipy [args]` — consumer pass-through: forwards to the honiipy typer
   cli (`uv run honiipy`).
-
-## size discipline (from laconic)
-
-- files <= 100 lines.
-- functions <= 15 lines.
-- one `tests/test_X.py` per `src/honiipy/X.py`. only `__init__.py` is
-  exempt; `_`-prefixed modules are mirrored like anything else, so marking a
-  module internal cannot quietly drop its test requirement.
-
-`ish python laconic` enforces these against `src/honiipy` (size +
-structure), and `ish python audit` runs it alongside ruff and pytest — so the
-rules above are gated, not just guidance.
-
-laconic runs unmodified, with every check it offers enabled: no flags narrowing
-what it inspects, no pinned version, no local fork. it is developed alongside
-honiipy, so its rules move. when they do, the gate fails here and honiipy
-adapts — the rules above describe laconic's current behavior, not a contract
-with it.

@@ -5,8 +5,8 @@ root `pyproject.toml` under poethepoet, modelled on `~/Source/laconic`.
 
 ## precondition
 
-`rip-out-ruby/hoist-to-root` is done. poe tasks are declared in the root
-`pyproject.toml`, which only exists as a single merged manifest after the hoist.
+honiipy is a single-package root with one `pyproject.toml`. that manifest is
+where the poe tasks get declared.
 
 ## context
 
@@ -41,14 +41,15 @@ flat — `dev:lint`, not `honiipy:dev:lint`.
 - declare in the root `pyproject.toml`: `dev:fmt`, `dev:fix`, `dev:lint`,
   `dev:test`, `dev:laconic`, `dev:sast`, `dev:dependencies`, and an aggregate
   `dev:check` over them with `ignore_fail = "return_non_zero"`.
-- `dev:laconic` runs `laconic check --source src/honiipy --size`. the structure
-  pass is withheld deliberately — see the laconic gate note in
-  `rip-out-ruby/hoist-to-root`.
+- `dev:laconic` runs `laconic check --source src/honiipy` with no flags at all.
+  laconic runs unmodified here — nothing narrowing what it inspects, no pinned
+  version, no local fork. it is developed alongside honiipy, so when its rules
+  move the gate fails here and honiipy adapts.
 - forwarded path arguments must resolve from the caller's cwd. `dev:test` and
   `dev:laconic` take user-supplied paths, and the bash verbs they replace
   resolved those against the package dir instead — from the repo root,
-  `ish python test tests/test_cli.py` looked under `tests/tests/test_cli.py`
-  and failed. poe's per-task `cwd` is the declared fix for the same bug; a
+  `ish python test tests/test_shading.py` looked under
+  `tests/tests/test_shading.py` and failed. poe's per-task `cwd` is the declared fix for the same bug; a
   check that a repo-relative path runs the test it names belongs in this task.
 - delete `ishd/packages/ish-python/`, `ishd/packages/ish-bash/`, and
   `ishd/packages/ish-honiipy/`.
@@ -59,9 +60,9 @@ flat — `dev:lint`, not `honiipy:dev:lint`.
 
 ## what stays
 
-- every gate's behavior. ruff, pytest with branch coverage, and the laconic
-  size checks keep their current flags and thresholds; only the declaration
-  moves from bash to `pyproject.toml`.
+- every gate's behavior. ruff, pytest with branch coverage, and laconic keep
+  what they check and how strictly; only the declaration moves from bash to
+  `pyproject.toml`.
 - the `honiipy` console script and the `__init__.py` façade.
 
 ## out of scope
@@ -77,7 +78,7 @@ left to audit.
 
 - `uv run poe dev:check` runs every gate and reports all failures, not just the
   first.
-- from the repo root, `uv run poe dev:test tests/test_cli.py` runs that file.
+- from the repo root, `uv run poe dev:test tests/test_shading.py` runs that file.
 - `grep -rn "ish python\|ish bash\|ish honiipy" . --exclude-dir=.git` returns
   nothing outside the kanban.
 

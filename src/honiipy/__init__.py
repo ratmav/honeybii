@@ -1,5 +1,5 @@
-from honiipy.shading import shade
+"""honiipy — turn an image into shaded ascii text."""
 
-__version__ = "0.0.0"
+from . import shading
 
-__all__ = ["__version__", "shade"]
+__all__ = ["shading"]

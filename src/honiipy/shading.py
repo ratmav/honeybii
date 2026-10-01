@@ -2,7 +2,17 @@
 
 from PIL import Image
 
-from honiipy._gradients import GRADIENTS, ONE_TO_ONE_MAX, STYLES
+from honiipy._internal.gradients import GRADIENTS, ONE_TO_ONE_MAX, STYLES
+
+__all__ = [
+    "intensity_range",
+    "load_gray",
+    "one_to_one_index",
+    "pixelate",
+    "relative_index",
+    "shade",
+    "to_ascii",
+]
 
 
 def load_gray(path) -> Image.Image:
@@ -22,11 +32,6 @@ def intensity_range(img: Image.Image) -> tuple[int, int]:
     return img.getextrema()
 
 
-def _round_half_up(value: float) -> int:
-    """round half away from zero (index args are always >= 0)."""
-    return int(value + 0.5)
-
-
 def relative_index(value: int, low: int, high: int, gradient_size: int) -> int:
     """relative style: stretch intensity across the image's own [low, high]."""
     if high == low:
@@ -37,21 +42,6 @@ def relative_index(value: int, low: int, high: int, gradient_size: int) -> int:
 def one_to_one_index(value: int, gradient_size: int) -> int:
     """one_to_one style: map intensity across the full 0-255 range."""
     return _round_half_up(gradient_size * value / ONE_TO_ONE_MAX)
-
-
-def _indexer(img: Image.Image, ramp: list[str], style: str):
-    """pick the per-pixel index function for the chosen style."""
-    size = len(ramp) - 1
-    if style == "relative":
-        low, high = intensity_range(img)
-        return lambda v: relative_index(v, low, high, size)
-    return lambda v: one_to_one_index(v, size)
-
-
-def _join_rows(chars: list[str], width: int) -> str:
-    """chunk a row-major char list into newline-joined lines."""
-    lines = [chars[i : i + width] for i in range(0, len(chars), width)]
-    return "\n".join("".join(line) for line in lines)
 
 
 def to_ascii(img: Image.Image, gradient: int = 0, style: str = "relative") -> str:
@@ -72,3 +62,23 @@ def shade(
     """turn an image path into shaded ascii."""
     img = pixelate(load_gray(path), point_size)
     return to_ascii(img, gradient, style)
+
+
+def _round_half_up(value: float) -> int:
+    """round half away from zero (index args are always >= 0)."""
+    return int(value + 0.5)
+
+
+def _indexer(img: Image.Image, ramp: list[str], style: str):
+    """pick the per-pixel index function for the chosen style."""
+    size = len(ramp) - 1
+    if style == "relative":
+        low, high = intensity_range(img)
+        return lambda v: relative_index(v, low, high, size)
+    return lambda v: one_to_one_index(v, size)
+
+
+def _join_rows(chars: list[str], width: int) -> str:
+    """chunk a row-major char list into newline-joined lines."""
+    lines = [chars[i : i + width] for i in range(0, len(chars), width)]
+    return "\n".join("".join(line) for line in lines)

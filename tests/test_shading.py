@@ -3,8 +3,7 @@ import pytest
 from PIL import Image
 
 from honiipy import shading
-from honiipy._banner import ART
-from honiipy._gradients import GRADIENTS
+from honiipy._internal.gradients import GRADIENTS
 
 
 def _gray(values, size):
@@ -98,7 +97,3 @@ _FIXTURES = Path(__file__).parent / "fixtures"
 def test_shade_matches_fixture(name):
     expected = (_FIXTURES / f"{name}.txt").read_text()
     assert shading.shade(_IMAGES / f"{name}.jpg") == expected
-
-
-def test_banner_matches_snake_conversion():
-    assert ART == shading.shade(_IMAGES / "snake.jpg", gradient=0)

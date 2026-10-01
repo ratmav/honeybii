@@ -2,9 +2,8 @@ import pytest
 from PIL import Image
 from typer.testing import CliRunner
 
-from honiipy import shade
-from honiipy._banner import ART
-from honiipy.cli import app, main
+from honiipy import shading
+from honiipy._internal.cli import app, art, main
 
 runner = CliRunner()
 
@@ -25,7 +24,7 @@ def test_main_invokes_app() -> None:
 def test_no_args_shows_help() -> None:
     result = runner.invoke(app, [])
     assert "Usage" in result.output
-    assert ART.strip() in result.output
+    assert art().strip() in result.output
 
 
 def test_help() -> None:
@@ -45,7 +44,7 @@ def test_convert_matches_core(tmp_path) -> None:
     _gradient_image(path)
     result = runner.invoke(app, ["convert", str(path)])
     assert result.exit_code == 0
-    assert result.stdout == shade(str(path)) + "\n"
+    assert result.stdout == shading.shade(str(path)) + "\n"
 
 
 def test_convert_pixel_size(tmp_path) -> None:
@@ -53,7 +52,7 @@ def test_convert_pixel_size(tmp_path) -> None:
     _gradient_image(path)
     result = runner.invoke(app, ["convert", str(path), "--pixel-size", "6"])
     assert result.exit_code == 0
-    assert result.stdout == shade(str(path), point_size=6) + "\n"
+    assert result.stdout == shading.shade(str(path), point_size=6) + "\n"
 
 
 def test_convert_gradient(tmp_path) -> None:
@@ -61,7 +60,7 @@ def test_convert_gradient(tmp_path) -> None:
     _gradient_image(path)
     result = runner.invoke(app, ["convert", str(path), "--gradient", "2"])
     assert result.exit_code == 0
-    assert result.stdout == shade(str(path), gradient=2) + "\n"
+    assert result.stdout == shading.shade(str(path), gradient=2) + "\n"
 
 
 def test_convert_one_to_one(tmp_path) -> None:
@@ -69,7 +68,7 @@ def test_convert_one_to_one(tmp_path) -> None:
     _gradient_image(path)
     result = runner.invoke(app, ["convert", str(path), "--one-to-one"])
     assert result.exit_code == 0
-    assert result.stdout == shade(str(path), style="one_to_one") + "\n"
+    assert result.stdout == shading.shade(str(path), style="one_to_one") + "\n"
 
 
 def test_convert_rejects_out_of_range_gradient(tmp_path) -> None:
