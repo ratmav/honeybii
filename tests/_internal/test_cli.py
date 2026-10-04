@@ -1,3 +1,5 @@
+from importlib import metadata
+
 import pytest
 from PIL import Image
 from typer.testing import CliRunner
@@ -34,9 +36,11 @@ def test_help() -> None:
 
 
 def test_version() -> None:
+    # pyproject.toml is the only place the version is written; assert against
+    # the installed metadata rather than restating the number here.
     result = runner.invoke(app, ["version"])
     assert result.exit_code == 0
-    assert "0.0.0" in result.stdout
+    assert result.stdout.strip() == metadata.version("honiipy")
 
 
 def test_convert_matches_core(tmp_path) -> None:

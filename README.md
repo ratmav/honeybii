@@ -42,10 +42,13 @@ an image-to-ascii converter.
 
 ## install
 
-not yet on pypi. for now, run it from source in this repo through the ish
-wrapper or uv (see [docs/cli.md](docs/cli.md) for details):
+install from git:
 
-    ish honiipy convert path/to/image.jpg
+    uv tool install git+https://github.com/ratmav/honeybii
+
+that puts a `honiipy` command on your path. working inside this repo, run it
+as `ish honiipy ...` or `uv run honiipy ...` instead — see
+[docs/cli.md](docs/cli.md).
 
 ## usage
 
