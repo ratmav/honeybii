@@ -44,7 +44,7 @@ an image-to-ascii converter.
 
 install from git:
 
-    uv tool install git+https://github.com/ratmav/honeybii
+    uv tool install git+https://github.com/ratmav/honiipy
 
 that puts a `honiipy` command on your path. working inside this repo, run it
 as `ish honiipy ...` or `uv run honiipy ...` instead — see

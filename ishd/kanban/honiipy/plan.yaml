@@ -4,5 +4,4 @@
 phases:
   - roadmap: roadmap/honiipy.md
     tasks:
-      - rename-repo.md
       - adopt-poe-tasks.md
