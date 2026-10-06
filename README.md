@@ -46,9 +46,8 @@ install from git:
 
     uv tool install git+https://github.com/ratmav/honiipy
 
-that puts a `honiipy` command on your path. working inside this repo, run it
-as `ish honiipy ...` or `uv run honiipy ...` instead — see
-[docs/cli.md](docs/cli.md).
+that puts a `honiipy` command on your path. working inside this repo, run it as
+`uv run honiipy ...` instead.
 
 ## usage
 
@@ -62,7 +61,15 @@ as `ish honiipy ...` or `uv run honiipy ...` instead — see
 - `--one-to-one` — map intensity across the full 0–255 range; the default,
   relative, stretches contrast across the image's own min/max.
 
-full reference: [docs/cli.md](docs/cli.md), [docs/shading.md](docs/shading.md).
+`honiipy --help` is the full cli reference. for use as a library,
+`honiipy.shading` carries the converter and its pipeline stages, each with its
+own docstring:
+
+```python
+from honiipy import shading
+
+art = shading.shade("photo.png", point_size=12, gradient=0, style="relative")
+```
 
 ## lineage
 

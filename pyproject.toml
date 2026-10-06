@@ -2,7 +2,10 @@
 name = "honiipy"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = ["pillow", "typer"]
+# pillow floor is a security floor: 12.2.0 and below carry 26 advisories,
+# several heap out-of-bounds writes in the decoders honiipy feeds untrusted
+# images to. do not relax it.
+dependencies = ["pillow>=12.3.0", "typer"]
 
 [project.scripts]
 honiipy = "honiipy._internal.cli:main"
@@ -16,6 +19,8 @@ packages = ["src/honiipy"]
 
 [dependency-groups]
 dev = [
+    "bandit>=1.9.4",
+    "poethepoet>=0.30",
     "pytest>=8.0",
     "pytest-cov>=7.1.0",
     "ruff>=0.15.9",
@@ -27,3 +32,48 @@ laconic = { path = "../laconic", editable = true }
 
 [tool.pytest.ini_options]
 addopts = ["-q", "--tb=short", "-rf", "--no-header"]
+
+# dev gates. names stay flat — one package at its own root needs no namespace.
+[tool.poe.tasks."dev:fmt"]
+help = "ruff format on source and tests"
+cmd = "ruff format src/honiipy tests"
+
+[tool.poe.tasks."dev:fix"]
+help = "ruff check --fix on source and tests"
+cmd = "ruff check --fix src/honiipy tests"
+
+[tool.poe.tasks."dev:lint"]
+help = "ruff check + format-check on source and tests"
+sequence = [
+    { cmd = "ruff check src/honiipy tests" },
+    { cmd = "ruff format --check src/honiipy tests" },
+]
+
+[tool.poe.tasks."dev:test"]
+help = "pytest with branch coverage"
+cmd = "pytest --cov=honiipy --cov-branch --cov-report= --cov-fail-under=90 tests"
+
+[tool.poe.tasks."dev:laconic"]
+help = "laconic checks, unmodified — no flags narrowing what it inspects"
+cmd = "laconic check --source=src/honiipy"
+
+[tool.poe.tasks."dev:sast"]
+help = "bandit on source (quiet unless findings)"
+cmd = "bandit -q -r src/honiipy"
+
+[tool.poe.tasks."dev:dependencies"]
+help = "supply-chain audit of uv.lock against OSV.dev (quiet unless findings)"
+cmd = "uv audit --quiet --preview-features audit-command"
+
+# the known-good. every gate runs and all failures report, rather than stopping
+# at the first — the behaviour the old bash audit hand-rolled with a flag.
+[tool.poe.tasks."dev:check"]
+help = "the full gate — lint, test, laconic, sast, dependencies"
+ignore_fail = "return_non_zero"
+sequence = [
+    { ref = "dev:lint" },
+    { ref = "dev:test" },
+    { ref = "dev:laconic" },
+    { ref = "dev:sast" },
+    { ref = "dev:dependencies" },
+]

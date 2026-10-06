@@ -1,7 +1,0 @@
-# task plan. order = priority. nesting = structure.
-# task paths relative to tasks/. roadmap paths relative to roadmap/.
-
-phases:
-  - roadmap: roadmap/honiipy.md
-    tasks:
-      - adopt-poe-tasks.md

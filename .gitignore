@@ -1,6 +1,7 @@
 .DS_Store
 tmp_scripts/
 
+.direnv/
 .venv/
 __pycache__/
 *.pyc

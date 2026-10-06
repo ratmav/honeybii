@@ -21,7 +21,11 @@ def load_gray(path) -> Image.Image:
 
 
 def pixelate(img: Image.Image, point_size: int) -> Image.Image:
-    """resize to the char grid; rows use point_size*2 for aspect correction."""
+    """resize to the char grid; rows use point_size*2 for aspect correction.
+
+    terminal cells are roughly twice as tall as they are wide, so a row has to
+    cover twice the pixels a column does for the output to keep its shape.
+    """
     columns = img.width // point_size
     rows = img.height // (point_size * 2)
     return img.resize((columns, rows), Image.Resampling.LANCZOS)
@@ -40,7 +44,11 @@ def relative_index(value: int, low: int, high: int, gradient_size: int) -> int:
 
 
 def one_to_one_index(value: int, gradient_size: int) -> int:
-    """one_to_one style: map intensity across the full 0-255 range."""
+    """one_to_one style: map intensity across the full 0-255 range.
+
+    the divisor is the constant 255, not the image's own range, so a flat image
+    renders as a solid block here where relative_index raises instead.
+    """
     return _round_half_up(gradient_size * value / ONE_TO_ONE_MAX)
 
 
@@ -65,7 +73,11 @@ def shade(
 
 
 def _round_half_up(value: float) -> int:
-    """round half away from zero (index args are always >= 0)."""
+    """round half away from zero (index args are always >= 0).
+
+    deliberately not python's round(), which is banker's rounding and would
+    pull .5 toward the even bucket, shifting glyphs on exact boundaries.
+    """
     return int(value + 0.5)
 
 
