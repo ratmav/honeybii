@@ -56,7 +56,7 @@ def test_convert_pixel_size(tmp_path) -> None:
     _gradient_image(path)
     result = runner.invoke(app, ["convert", str(path), "--pixel-size", "6"])
     assert result.exit_code == 0
-    assert result.stdout == shading.shade(str(path), point_size=6) + "\n"
+    assert result.stdout == shading.shade(str(path), pixel_size=6) + "\n"
 
 
 def test_convert_gradient(tmp_path) -> None:

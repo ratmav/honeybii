@@ -20,14 +20,14 @@ def load_gray(path) -> Image.Image:
     return Image.open(path).convert("L")
 
 
-def pixelate(img: Image.Image, point_size: int) -> Image.Image:
-    """resize to the char grid; rows use point_size*2 for aspect correction.
+def pixelate(img: Image.Image, pixel_size: int) -> Image.Image:
+    """resize to the char grid; rows use pixel_size*2 for aspect correction.
 
     terminal cells are roughly twice as tall as they are wide, so a row has to
     cover twice the pixels a column does for the output to keep its shape.
     """
-    columns = img.width // point_size
-    rows = img.height // (point_size * 2)
+    columns = img.width // pixel_size
+    rows = img.height // (pixel_size * 2)
     return img.resize((columns, rows), Image.Resampling.LANCZOS)
 
 
@@ -65,10 +65,10 @@ def to_ascii(img: Image.Image, gradient: int = 0, style: str = "relative") -> st
 
 
 def shade(
-    path, point_size: int = 12, gradient: int = 0, style: str = "relative"
+    path, pixel_size: int = 12, gradient: int = 0, style: str = "relative"
 ) -> str:
     """turn an image path into shaded ascii."""
-    img = pixelate(load_gray(path), point_size)
+    img = pixelate(load_gray(path), pixel_size)
     return to_ascii(img, gradient, style)
 
 

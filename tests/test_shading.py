@@ -75,7 +75,7 @@ def test_shade_dims(tmp_path):
     img = Image.new("L", (60, 120))
     img.putdata([(x * 255) // 59 for _ in range(120) for x in range(60)])
     img.save(path)
-    lines = shading.shade(path, point_size=6, style="relative").split("\n")
+    lines = shading.shade(path, pixel_size=6, style="relative").split("\n")
     assert len(lines) == 120 // (6 * 2)  # 10 rows
     assert all(len(line) == 60 // 6 for line in lines)  # 10 cols
 
@@ -84,8 +84,8 @@ def test_shade_flat_image(tmp_path):
     path = tmp_path / "flat.png"
     Image.new("L", (48, 48), 128).save(path)
     with pytest.raises(ValueError):
-        shading.shade(path, point_size=4, style="relative")  # no relative range
-    art = shading.shade(path, point_size=4, style="one_to_one")
+        shading.shade(path, pixel_size=4, style="relative")  # no relative range
+    art = shading.shade(path, pixel_size=4, style="one_to_one")
     assert len(set(art.replace("\n", ""))) == 1  # uniform solid block
 
 

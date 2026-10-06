@@ -68,7 +68,7 @@ own docstring:
 ```python
 from honiipy import shading
 
-art = shading.shade("photo.png", point_size=12, gradient=0, style="relative")
+art = shading.shade("photo.png", pixel_size=12, gradient=0, style="relative")
 ```
 
 ## lineage

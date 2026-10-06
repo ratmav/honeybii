@@ -67,7 +67,7 @@ def _render(image: Path, pixel_size: int, gradient: int, one_to_one: bool) -> No
     style = "one_to_one" if one_to_one else "relative"
     try:
         art = shading.shade(
-            image, point_size=pixel_size, gradient=gradient, style=style
+            image, pixel_size=pixel_size, gradient=gradient, style=style
         )
     except OSError:  # missing, corrupt, truncated, permission, directory, ...
         typer.echo(f"error: cannot read image: {image}", err=True)
